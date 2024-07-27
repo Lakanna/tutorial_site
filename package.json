@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/js-hw-09/",
+    "build": "vite build --base=/tutorial_site/",
     "preview": "vite preview"
   },
   "devDependencies": {
