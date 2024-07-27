@@ -1,0 +1,119 @@
+/**
+  |============================
+  | include css partials with
+  | default @import url()
+  |============================
+*/
+@import url('./reset.css');
+
+/* @import url('./header.css'); */
+
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  color: #242424;
+  background-color: rgba(224, 223, 223, 0.87);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+*/ .title {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  text-align: center;
+  background: -webkit-linear-gradient(#02672e, #c3f370);
+  /* -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+  font-family: 'Gill Sans', 'Gill Sans MT', 'Myriad Pro',
+    'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;
+  font-size: 30px;
+}
+
+.gallery {
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  width: 1128px;
+}
+
+.gallery-item {
+  width: 300px;
+  height: 200px;
+  /* overflow: hidden; */
+}
+
+.gallery-image {
+  width: 100%;
+  transition: transform 0.25s;
+  overflow: hidden;
+}
+
+.gallery-item:hover .gallery-image {
+  transform: scale(1.1);
+}
+
+/* форма */
+
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  width: 360px;
+  height: 248px;
+  padding: 24px;
+  gap: 8px;
+  border-radius: 8px;
+  opacity: 0px;
+  background-color: #ffffff;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.04em;
+  text-align: left;
+}
+
+.feedback-form button {
+  width: 95px;
+  height: 40px;
+  padding: 8px 16px 8px 16px;
+  border-radius: 8px;
+  opacity: 0px;
+  background-color: #4e75ff;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.04em;
+  text-align: center;
+  border: none;
+  color: #ffffff;
+}
+.feedback-form button:hover {
+  background-color: #6c8cff;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+textarea {
+  border-radius: 8px;
+  height: 80px;
+  resize: none;
+}
+
+.form-input {
+  height: 40px;
+  border-radius: 8px;
+  padding: 5px;
+}
