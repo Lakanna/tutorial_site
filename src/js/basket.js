@@ -6,38 +6,48 @@ const LS_KEY = 'clientBasket';
 
 let currentBasket = JSON.parse(localStorage.getItem(LS_KEY)) ?? [];
 
+if (currentBasket.length) {
+  totalPriceLabel.insertAdjacentHTML(
+    'afterbegin',
+    `Total price = ${getTotalPrice(currentBasket)} грн.
+    Вдалий вибір 👍`
+  );
+  clearBasketBtn.hidden = false;
+} else {
+  totalPriceLabel.insertAdjacentHTML('afterbegin', 'Your basket is empty');
+}
+
 basketList.insertAdjacentHTML('afterbegin', basketMarkup(currentBasket));
 
 clearBasketBtn.addEventListener('click', clearBasket);
-basketList.addEventListener('click', handlerButton);
 
-function handlerButton(evn) {
+basketList.addEventListener('click', handlerChangeQuantity);
+
+/**
+ * функція для відстеження кнопок зміни кількості одиниць вибраного товару в корзині
+ * @param {*} evn
+ * @returns
+ */
+function handlerChangeQuantity(evn) {
   const currentProduct = evn.target.closest('.cart-item');
   const currentProductId = Number(currentProduct.dataset.productId);
-  console.log(currentProductId);
   const currentProductIndex = currentBasket.findIndex(
     ({ id }) => id === currentProductId
   );
-  console.dir(currentProductIndex);
 
   if (evn.target.nodeName !== 'BUTTON') {
     return;
   }
 
-  console.dir(evn.target);
   if (
     Number(evn.target.dataset.buttonId) === -1 &&
     currentBasket[currentProductIndex].qnt > 1
   ) {
     currentBasket[currentProductIndex].qnt -= 1;
-    localStorage.setItem(LS_KEY, JSON.stringify(currentBasket));
-    basketList.innerHTML = basketMarkup(currentBasket);
-    totalPriceLabel.innerHTML = getTotalPrice(currentBasket);
+    changeQuantity();
   } else if (Number(evn.target.dataset.buttonId) === 1) {
     currentBasket[currentProductIndex].qnt += 1;
-    localStorage.setItem(LS_KEY, JSON.stringify(currentBasket));
-    basketList.innerHTML = basketMarkup(currentBasket);
-    totalPriceLabel.innerHTML = getTotalPrice(currentBasket);
+    changeQuantity();
   } else if (Number(evn.target.dataset.buttonId) === 0) {
     removeItem(currentBasket[currentProductIndex]);
     if (!currentBasket.length) {
@@ -47,11 +57,15 @@ function handlerButton(evn) {
   }
 }
 
-function removeItem(idx) {
-  currentBasket.splice(idx, 1);
+function changeQuantity() {
   localStorage.setItem(LS_KEY, JSON.stringify(currentBasket));
   basketList.innerHTML = basketMarkup(currentBasket);
   totalPriceLabel.innerHTML = getTotalPrice(currentBasket);
+}
+
+function removeItem(idx) {
+  currentBasket.splice(idx, 1);
+  changeQuantity();
 }
 
 function clearBasket() {
@@ -84,14 +98,4 @@ function basketMarkup(arr) {
        </li>`
     )
     .join('');
-}
-
-if (currentBasket.length) {
-  totalPriceLabel.insertAdjacentHTML(
-    'afterbegin',
-    getTotalPrice(currentBasket)
-  );
-  clearBasketBtn.hidden = false;
-} else {
-  totalPriceLabel.insertAdjacentHTML('afterbegin', 'Your basket is empty');
 }

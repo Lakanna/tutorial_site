@@ -22,7 +22,7 @@ const products = [
     name: 'Шліфмашина',
     price: 1299,
     description:
-      'Кутова шліфувальна машина Dnipro-M GS-98 – модель, яка поєднує в собі оптимальне співвідношення потужності, ваги та мобільності. Конструкція шліфмашини сприяє зручній та надійній роботі, навіть однією рукою. Інструмент ідеально підходить для виконання різу на висоті та використання у важкодоступних місцях. Низький рівень шуму та вібрації, двопозиційне розташування додаткової рукоятки під кутом 100 градусів, мінімізує втому під час шліфування.',
+      'Кутова шліфувальна машина Dnipro-M GS-98 – модель, яка поєднує в собі оптимальне співвідношення потужності, ваги та мобільності. Конструкція шліфмашини сприяє зручній та надійній роботі, навіть однією рукою. Низький рівень шуму та вібрації, двопозиційне розташування додаткової рукоятки під кутом 100 градусів, мінімізує втому під час шліфування.',
   },
   {
     id: 4,
@@ -69,32 +69,27 @@ const products = [
 const LS_KEY = 'clientBasket';
 
 const productList = document.querySelector('.js-product-list');
-console.log(productList);
 
 productList.insertAdjacentHTML('afterbegin', createMarkup(products));
 
 productList.addEventListener('click', handlerAddToBasket);
 
 function handlerAddToBasket(evn) {
-  //   console.dir(evn.target.classList);
   if (!evn.target.classList.contains('js-add-product-btn')) {
     return;
   }
 
   const basket = JSON.parse(localStorage.getItem(LS_KEY)) ?? [];
-  console.log(basket);
-
   const indexProduct = Number(
     evn.target.closest('.js-product-card').dataset.productId
   );
+
   const currentProduct = products.find(({ id }) => id === indexProduct);
   const indexCurrentProduct = basket.findIndex(({ id }) => id === indexProduct);
 
-  console.log(indexCurrentProduct);
   if (indexCurrentProduct === -1) {
     currentProduct.qnt = 1;
     basket.push(currentProduct);
-    console.log(basket);
   } else {
     basket[indexCurrentProduct].qnt += 1;
   }
