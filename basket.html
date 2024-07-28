@@ -5,12 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <title>Basket</title>
-    <script type="module" crossorigin src="/tutorial_site/assets/styles-af21159e.js"></script>
-    <link rel="stylesheet" href="/tutorial_site/assets/styles-6b68808c.css">
+    <script type="module" crossorigin src="/tutorial_site/commonHelpers.js"></script>
+    <link rel="modulepreload" crossorigin href="/tutorial_site/assets/styles-e61fb95b.js">
+    <link rel="stylesheet" href="/tutorial_site/assets/styles-d4393086.css">
   </head>
   <body>
     <a href="./index.html">Home</a>
-    <ul></ul>
+
+    <p class="total-price-label js-total"></p>
+
+    <button class="clear-cart-btn" type="button" hidden>
+      Clear the basket
+    </button>
+
+    <ul class="products-container js-basket-list"></ul>
 
     
   </body>
