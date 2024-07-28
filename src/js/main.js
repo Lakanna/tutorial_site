@@ -110,7 +110,7 @@ function createMarkup(arr) {
           <img class="product-img" src="${img}" alt="${name}" />
           <h2 class="product-title">${name}</h2>
           <p class="product-description">${description}</p>
-          <p class="product-price">${price}</p>
+          <p class="product-price">Priсe ${price} грн</p>
           <button class="product-add-btn js-add-product-btn" type="button">Add to basket</button>
       </li>`
     )
